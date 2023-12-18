@@ -27,18 +27,17 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/v1/scrapi', cache('1 day'), require('./routes/scrapi'));
-
-app.use('/v1/correios', apiLimiter, auth.token, cache('1 day'), require('./routes/correios'));
-app.use('/v1/cep', require('./routes/cep'));
-app.use('/v1/ip', require('./routes/ip'));
-app.use('/v1/lottery', require('./routes/lottery'));
-app.use('/v1/fipe', require('./routes/fipe'));
-app.use('/v1/place', require('./routes/place'));
-app.use('/v1/cnae', require('./routes/cnae'));
+//app.use('/v1/correios', apiLimiter, auth.token, cache('1 day'), require('./routes/correios'));
+//app.use('/v1/cep', require('./routes/cep'));
+//app.use('/v1/ip', require('./routes/ip'));
+//app.use('/v1/lottery', require('./routes/lottery'));
+//app.use('/v1/fipe', require('./routes/fipe'));
+//app.use('/v1/place', require('./routes/place'));
+//app.use('/v1/cnae', require('./routes/cnae'));
 app.use('/v1/cnpj', apiLimiter, auth.token, cache('1 day'), request.params, require('./routes/cnpj'));
-app.use('/v1/domains', require('./routes/domains'));
-app.use('/v1/weather', require('./routes/weather'));
-app.use('/v1/currencies', require('./routes/currencies'));
+//app.use('/v1/domains', require('./routes/domains'));
+//app.use('/v1/weather', require('./routes/weather'));
+//app.use('/v1/currencies', require('./routes/currencies'));
 
 app.use(apiLimiter, function(req, res, next) {
     res.status(404).json({status: 'not found', message: 'The requested resource does not exist'});
