@@ -22,18 +22,18 @@ router.get('/dev/:id', async function(req, res, next){
             "endpoint": el.endpoint,
             "routes": el.routes
         }));
-        let api = new JsonRecords('./database/apis.json').get(record => record.endpoint === '/'+req.params.id && record.status === 'on')[0];
-        api = {
-            "name": api.name,
-            "category": api.category,
-            "base": api.base,
-            "version": api.version,
-            "endpoint": api.endpoint,
-            "request": api.request,
-            "response": api.response
-        };
+        let api = new JsonRecords('./database/apis.json').get(record => record.endpoint === '/'+req.params.id && record.status === 'on');
+        api = api.map(el => ({
+            "name": el.name,
+            "category": el.category,
+            "base": el.base,
+            "version": el.version,
+            "endpoint": el.endpoint,
+            "request": el.request,
+            "response": el.response,
+        }));
         if(api.length){
-            res.status(200).json({status: 'success', results: {brasil: brasil, mundo: mundo, google: google, api: api}});
+            res.status(200).json({status: 'success', results: {brasil: brasil, mundo: mundo, google: google, api: api[0]}});
         }else{
             res.status(200).json({status: 'success', results: {brasil: brasil, mundo: mundo, google: google, api: {}}});
          }
