@@ -7,16 +7,19 @@ router.get('/dev/:id', async function(req, res, next){
         let brasil = new JsonRecords('./database/apis.json').get(record => record.category === 'Brasil' && record.status === 'on');
         brasil = brasil.map(el => ({
             "name": el.name,
+            "endpoint": el.endpoint,
             "routes": el.routes
         }));
         let mundo = new JsonRecords('./database/apis.json').get(record => record.category === 'Mundo' && record.status === 'on');
         mundo = mundo.map(el => ({
             "name": el.name,
+            "endpoint": el.endpoint,
             "routes": el.routes
         }));
         let google = new JsonRecords('./database/apis.json').get(record => record.category === 'Google' && record.status === 'on');
         google = google.map(el => ({
             "name": el.name,
+            "endpoint": el.endpoint,
             "routes": el.routes
         }));
         let api = new JsonRecords('./database/apis.json').get(record => record.endpoint === '/'+req.params.id && record.status === 'on');
