@@ -29,6 +29,7 @@ router.get('/dev/:id', async function(req, res, next){
             "base": el.base,
             "version": el.version,
             "endpoint": el.endpoint,
+            "routes": el.routes,
             "request": el.request,
             "response": el.response,
         }));
